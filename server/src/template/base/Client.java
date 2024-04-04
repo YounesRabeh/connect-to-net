@@ -1,23 +1,24 @@
-package template;
+package template.base;
+
+import template.ClientRecord;
 
 import java.net.Socket;
 
 public abstract class Client extends Host {
     // Upon Connected
-    // TODO: add upgrading/downgrading the clients
-    private ClientType clientType;
+    // ----
+
+    // Dynamic
 
     // Custom
     private String username; //TODO: pretty useless
 
-    public Client(Socket clientSocket, ClientType clientType) {
+    public Client(Socket clientSocket) {
         super(clientSocket);
-        this.clientType = clientType;
 
+        //TODO: see if the return type is indeed the super class not just 'Client'
         new ClientRecord(this, 1); // Assuming ClientRecord handles client record creation
     }
-
-    public ClientType getClientType() { return clientType; }
 
     public String getUsername() { return username; }
 

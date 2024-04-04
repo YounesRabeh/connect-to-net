@@ -1,4 +1,4 @@
-package template;
+package template.base;
 
 import java.time.Duration;
 import java.time.Instant;

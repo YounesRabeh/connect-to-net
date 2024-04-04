@@ -1,0 +1,12 @@
+the client perspective; no server , just preferment to it , send(data), the client shouldn't keep track of the
+servers he connected to. (or having a list of servers to connect to). iy should also know the default gateway.
+
+
+
+
+
+<SUBORDINATE>
+get the client's privileges in the connection
+check if a command is valid
+
+

@@ -1,4 +1,4 @@
-package template;
+package template.access;
 
 public enum ClientType {
     BASIC,

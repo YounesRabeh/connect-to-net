@@ -1,4 +1,4 @@
-package template;
+package template.base;
 
 import java.net.InetAddress;
 import java.net.Socket;
@@ -14,7 +14,7 @@ public abstract class Host implements Connectable {
     // When Sending/receiving
     private long bytesSent;
     private long bytesReceived;
-    private Duration connectionDuration;
+    private Duration connectionDuration; //TODO: useless
     
     protected Host(Socket socket){
         this.CONNECTION_TIME = Instant.now();
