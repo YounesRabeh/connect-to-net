@@ -3,23 +3,26 @@ package web;
 import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
+import java.net.InetAddress;
 import java.net.InetSocketAddress;
 
 public class SimpleHttpServer {
+    public static HttpServer testServer;
+    private static BasicAuthHandler basicAuthHandler = new BasicAuthHandler();
     public static void main(String[] args) {
         try {
             // Create HttpServer instance on port 8080
-            HttpServer server = HttpServer.create(new InetSocketAddress(8080), 0);
+            testServer = HttpServer.create(new InetSocketAddress(8080), 0);
 
             // Set the context path and handler for the server with basic authentication
-            server.createContext("/", new BasicAuthHandler());
+            testServer.createContext("/", basicAuthHandler);
 
             // Set the executor for handling incoming requests
-            server.setExecutor(null); // Use default executor
+            testServer.setExecutor(null); // Use default executor
 
-            // Start the server
-            server.start();
-            System.out.println("Server started on port 8080.");
+            // Start the testServer
+            testServer.start();
+            System.out.println("testServer started on port 8080.");
         } catch (IOException e) {
             e.printStackTrace();
         }

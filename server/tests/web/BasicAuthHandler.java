@@ -29,6 +29,9 @@ public class BasicAuthHandler implements HttpHandler {
                 OutputStream os = exchange.getResponseBody();
                 os.write(response.getBytes());
                 os.close();
+
+                // Print client information
+                printClientInfo(exchange);
                 return;
             }
         }
@@ -46,5 +49,15 @@ public class BasicAuthHandler implements HttpHandler {
         // Implement your own logic to validate credentials here
         // For example, compare with a database or predefined values
         return decodedCredentials.equals("admin:password"); // Example credentials for testing
+    }
+
+    private void printClientInfo(HttpExchange exchange) {
+        // Get client's remote address
+        String clientAddress = exchange.getRemoteAddress().getAddress().toString();
+        int clientPort = exchange.getRemoteAddress().getPort();
+
+        System.out.println("New client connected:");
+        System.out.println("Client Address: " + clientAddress);
+        System.out.println("Client Port: " + clientPort);
     }
 }
