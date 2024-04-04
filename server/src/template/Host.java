@@ -5,7 +5,7 @@ import java.net.Socket;
 import java.time.Duration;
 import java.time.Instant;
 
-public abstract class Host implements Connectable{
+public abstract class Host implements Connectable {
     // Upon Connected
     private final String IP, NAME;
     private final Integer PORT_NUM;
@@ -17,12 +17,13 @@ public abstract class Host implements Connectable{
     private Duration connectionDuration;
     
     protected Host(Socket socket){
-        InetAddress endPoint = socket.getInetAddress();
-
-        this.IP              = endPoint.getHostAddress();
-        this.NAME            = endPoint.getHostName();
-        this.PORT_NUM        = socket.getPort();
         this.CONNECTION_TIME = Instant.now();
+
+        InetAddress internet = socket.getInetAddress();
+        this.PORT_NUM        = socket.getPort();
+        this.IP              = internet.getHostAddress();
+        this.NAME            = internet.getHostName();
+
     }
 
     //GETTERS:
@@ -30,7 +31,7 @@ public abstract class Host implements Connectable{
     public String getIP() { return IP; }
 
     @Override
-    public String getHostName() { return NAME; }
+    public String getName() { return NAME; }
 
     @Override
     public int getPortNumber() { return PORT_NUM; }

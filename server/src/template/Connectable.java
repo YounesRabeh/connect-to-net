@@ -5,7 +5,7 @@ import java.time.Instant;
 
 public interface Connectable {
     String getIP();
-    String getHostName();
+    String getName();
     int getPortNumber();
     Instant getConnectionTime();
     long getBytesSent();
