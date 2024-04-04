@@ -23,7 +23,6 @@ public abstract class Host implements Connectable {
         this.PORT_NUM        = socket.getPort();
         this.IP              = internet.getHostAddress();
         this.NAME            = internet.getHostName();
-
     }
 
     //GETTERS:
