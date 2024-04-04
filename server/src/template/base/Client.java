@@ -22,5 +22,6 @@ public abstract class Client extends Host {
     }
 
     public String getUsername() { return username; }
+    public Integer getID() { return ID; }
 
 }

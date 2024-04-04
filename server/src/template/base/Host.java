@@ -12,11 +12,14 @@ public abstract class Host extends TimedDevice implements Connectable {
     private long bytesSent;
     private long bytesReceived;
 
+    private Socket SOCKET;
+
     
      Host(Socket socket){
          super();
-         InetAddress internet = socket.getInetAddress();
-         this.PORT_NUM        = socket.getPort();
+         this.SOCKET = socket;
+         InetAddress internet = SOCKET.getInetAddress();
+         this.PORT_NUM        = SOCKET.getPort();
          this.IP              = internet.getHostAddress();
          this.NAME            = internet.getHostName();
     }
@@ -36,6 +39,11 @@ public abstract class Host extends TimedDevice implements Connectable {
 
     @Override
     public long getBytesReceived() { return bytesReceived; }
+
+    @Override
+    public boolean isConnected(){
+         return !SOCKET.isClosed();
+    }
 
 
 

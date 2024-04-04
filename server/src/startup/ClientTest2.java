@@ -6,7 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.Socket;
 
-public class ClientTest {
+public class ClientTest2 {
     public static void main(String[] args) {
         try {
             // Connect to the server running on localhost at port 3214
@@ -18,7 +18,7 @@ public class ClientTest {
             OutputStreamWriter output = new OutputStreamWriter(socket.getOutputStream());
 
             // Send a message to the server
-//            String message = "Hello, Server! Im CLIENT 1";
+//            String message = "Hello, Server! im CLIENT 2";
 //            output.write(message + "\n");
 //            output.flush();
 //            System.out.println("Sent message to server: " + message);
@@ -27,10 +27,9 @@ public class ClientTest {
 //            String response = input.readLine();
 //            System.out.println("Server response: " + response);
 
-            Thread.sleep(7000);
+            Thread.sleep(100000);
             // Close the socket and streams
             socket.close();
-            System.out.println(socket.isClosed());
             input.close();
             output.close();
         } catch (IOException e) {

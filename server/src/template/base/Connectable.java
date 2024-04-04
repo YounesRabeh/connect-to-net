@@ -7,5 +7,6 @@ public interface Connectable {
     int getPortNumber();
     long getBytesSent();
     long getBytesReceived();
+    boolean isConnected();
 }
 
