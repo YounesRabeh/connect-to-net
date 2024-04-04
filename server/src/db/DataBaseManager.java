@@ -1,7 +1,12 @@
 package db;
 
 
-final class DataBaseManager {
+public final class DataBaseManager {
+    private static Integer idPoll;
 
+
+    public static Integer getAnID(){
+        return idPoll++;
+    }
 
 }
