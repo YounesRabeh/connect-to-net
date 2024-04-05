@@ -1,12 +1,15 @@
 package db;
 
 
+import db.types.Clients;
+
 import java.io.IOException;
 
+import static explorer.CsvTools.addToCsvFile;
 import static explorer.FileManager.createEmptyFileIfNotExists;
 import static explorer.PathResolver.createDirectory;
 
-public abstract class Database<R extends Record> implements DbSetup {
+public abstract class Database<R extends Record> implements DbInfo {
     private static Integer idPool = 0;
 
     private final String USERNAME;
@@ -19,6 +22,9 @@ public abstract class Database<R extends Record> implements DbSetup {
 
         dbInit();
     }
+
+    public abstract void addRecord(R record);
+    public abstract void removeRecord(R record);
 
     public void createDatabase() {
 
@@ -35,7 +41,6 @@ public abstract class Database<R extends Record> implements DbSetup {
     public void dbInit(){
        dirInit();
        filesInit();
-
     }
 
     private void dirInit(){
@@ -55,4 +60,5 @@ public abstract class Database<R extends Record> implements DbSetup {
             throw new RuntimeException(e);
         }
     }
+
 }

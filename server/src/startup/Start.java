@@ -19,7 +19,7 @@ public class Start {
         try {
             ServerSocket serverSocket = new ServerSocket(PORT);
             System.out.println("Server Started [" + PORT + "]");
-            new Clients();
+
 
             // Listen for connections and handle each client in a separate thread
             while (true) {

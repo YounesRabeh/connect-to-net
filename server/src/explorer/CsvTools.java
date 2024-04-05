@@ -68,6 +68,7 @@ public final class CsvTools {
         }
         return columnData;
     }
+
     public static List<List<String>> getColumns(String filePath, int... columnIndices) throws IOException {
         List<List<String>> columnsData = new ArrayList<>();
         List<String[]> csvData = readCsv(filePath);
@@ -84,6 +85,7 @@ public final class CsvTools {
         }
         return columnsData;
     }
+
     public static void appendRow(String filePath, String[] rowData) throws IOException {
         StringBuilder rowString = new StringBuilder();
         for (String data : rowData) {
@@ -96,7 +98,7 @@ public final class CsvTools {
     }
 
     public static void insertRow(String filePath, int index, String[] rowData) throws IOException {
-        List<String> lines = List.of(FileManager.readFile(filePath).split("\n"));
+        List<String> lines = new ArrayList<>(List.of(FileManager.readFile(filePath).split("\n")));
         if (index < 0 || index > lines.size()) {
             throw new IllegalArgumentException("Invalid index for inserting row");
         }
@@ -141,7 +143,7 @@ public final class CsvTools {
         if (csvData.isEmpty()) {
             throw new IllegalArgumentException("CSV file is empty");
         }
-        if (index < 0 || index >= csvData.get(0).length) {
+        if (index < 0 || index >= csvData.getFirst().length) {
             throw new IllegalArgumentException("Invalid index for inserting column");
         }
         if (columnData.length != csvData.size()) {
@@ -167,7 +169,7 @@ public final class CsvTools {
         if (csvData.isEmpty()) {
             throw new IllegalArgumentException("CSV file is empty");
         }
-        if (index < 0 || index >= csvData.get(0).length) {
+        if (index < 0 || index >= csvData.getFirst().length) {
             throw new IllegalArgumentException("Invalid index for deleting column");
         }
         for (String[] row : csvData) {

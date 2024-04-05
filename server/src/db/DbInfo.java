@@ -2,7 +2,7 @@ package db;
 
 import explorer.PathResolver;
 
-public interface DbSetup {
+public interface DbInfo {
     String DB_DIR           = PathResolver.getJarDirectory() + "/DB";
     String CLIENTS_DB_DIR   = DB_DIR + "/Clients";
     String ROUTING_DB_DIR   = DB_DIR + "/Routing";
