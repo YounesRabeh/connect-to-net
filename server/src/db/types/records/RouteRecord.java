@@ -1,4 +1,4 @@
-package db.tables.records;
+package db.types.records;
 
 public record RouteRecord() {
 }

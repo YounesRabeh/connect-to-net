@@ -15,31 +15,41 @@ public abstract class Host extends TimedDevice implements Connectable {
 
     private Socket SOCKET;
 
-    
-     Host(Socket socket){
-         super();
-         this.SOCKET = socket;
-         InetAddress internet = SOCKET.getInetAddress();
-         this.PORT_NUM        = SOCKET.getPort();
-         this.IP              = internet.getHostAddress();
-         this.NAME            = internet.getHostName();
+
+    Host(Socket socket) {
+        super();
+        this.SOCKET = socket;
+        InetAddress internet = SOCKET.getInetAddress();
+        this.PORT_NUM = SOCKET.getPort();
+        this.IP = internet.getHostAddress();
+        this.NAME = internet.getHostName();
     }
 
     //GETTERS:
     @Override
-    public String getIP() { return IP; }
+    public String getIP() {
+        return IP;
+    }
 
     @Override
-    public String getName() { return NAME; }
+    public String getName() {
+        return NAME;
+    }
 
     @Override
-    public int getPortNumber() { return PORT_NUM; }
+    public int getPortNumber() {
+        return PORT_NUM;
+    }
 
     @Override
-    public long getBytesSent() { return bytesSent; }
+    public long getBytesSent() {
+        return bytesSent;
+    }
 
     @Override
-    public long getBytesReceived() { return bytesReceived; }
+    public long getBytesReceived() {
+        return bytesReceived;
+    }
 
     @Override
     public boolean isHostUp() {
@@ -54,8 +64,6 @@ public abstract class Host extends TimedDevice implements Connectable {
             return false; // Exception occurred, indicating a disconnection
         }
     }
-
-
 
 
 }

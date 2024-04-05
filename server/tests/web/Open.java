@@ -5,9 +5,9 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-public class Open{
+public class Open {
     public static void main(String[] args) {
-        String url = "http://localhost:8080"; // Replace this with your server URL
+        String url = "http://localhost:3306"; // Replace this with your server URL
 
         try {
             // Check if the Desktop class is supported

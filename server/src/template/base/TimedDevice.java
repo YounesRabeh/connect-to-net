@@ -8,25 +8,33 @@ public abstract class TimedDevice implements Timer {
     private final String CONNECTION_FORMATTED_TIME;
     private Duration connectionDuration;
 
-    TimedDevice(){
+    TimedDevice() {
         this.CONNECTION_TIME = LocalDateTime.now();
         this.CONNECTION_FORMATTED_TIME = CONNECTION_TIME.format(CONNECTION_TIME_FORMATTER);
         this.connectionDuration = Duration.ZERO;
     }
 
-    private Duration calculateConnectionDuration(){ return connectionDuration = Duration.between(CONNECTION_TIME, LocalDateTime.now());}
+    private Duration calculateConnectionDuration() {
+        return connectionDuration = Duration.between(CONNECTION_TIME, LocalDateTime.now());
+    }
 
     @Override
-    public LocalDateTime getConnectionTime() { return CONNECTION_TIME; }
+    public LocalDateTime getConnectionTime() {
+        return CONNECTION_TIME;
+    }
 
     @Override
-    public Duration getConnectionDuration() { return calculateConnectionDuration(); }
+    public Duration getConnectionDuration() {
+        return calculateConnectionDuration();
+    }
 
     @Override
-    public String getFormattedConnectionTime() { return CONNECTION_FORMATTED_TIME; }
+    public String getFormattedConnectionTime() {
+        return CONNECTION_FORMATTED_TIME;
+    }
 
     @Override
-    public String getFormattedConnectionDuration(){
+    public String getFormattedConnectionDuration() {
         calculateConnectionDuration();
         // Format the duration components
         long hours = connectionDuration.toHours();

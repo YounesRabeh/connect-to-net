@@ -1,5 +1,6 @@
 package startup;
 
+import db.types.Clients;
 import template.base.Client;
 import template.clients.BasicClient;
 
@@ -14,10 +15,11 @@ public class Start {
     private static final long HEARTBEAT_INTERVAL = 2000; // 2 seconds
     private static Map<Integer, BasicClient> clientMap = new HashMap<>();
 
-    public static void main(String[] args) {
+    Start(){
         try {
             ServerSocket serverSocket = new ServerSocket(PORT);
             System.out.println("Server Started [" + PORT + "]");
+            new Clients();
 
             // Listen for connections and handle each client in a separate thread
             while (true) {
@@ -25,7 +27,7 @@ public class Start {
                 clientMap.put(client.getID(), client);
 
                 Thread clientThread = new Thread(() -> {
-                    System.out.print("New client connected: " + client.getName() + "\nID : "+ client.getID());
+                    System.out.print("New client connected: " + client.getName() + "\nID : " + client.getID());
                     System.out.println("\t> Connected at " + client.getFormattedConnectionTime());
 
                     try {

@@ -17,15 +17,6 @@ public class ClientTest2 {
             BufferedReader input = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             OutputStreamWriter output = new OutputStreamWriter(socket.getOutputStream());
 
-            // Send a message to the server
-//            String message = "Hello, Server! im CLIENT 2";
-//            output.write(message + "\n");
-//            output.flush();
-//            System.out.println("Sent message to server: " + message);
-//
-//            // Read the server's response
-//            String response = input.readLine();
-//            System.out.println("Server response: " + response);
 
             Thread.sleep(10000);
             // Close the socket and streams

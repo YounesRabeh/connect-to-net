@@ -4,5 +4,4 @@ public interface Subordinate {
     ClientType getClientType();
 
 
-
 }
