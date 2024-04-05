@@ -1,9 +1,8 @@
-package template;
+package db.tables.records;
 
 
 import template.base.Client;
 
 public record ClientRecord(Client CLIENT, Integer ID) {
 
-    //Todo: add in a db
 }

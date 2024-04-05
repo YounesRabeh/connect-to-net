@@ -30,7 +30,6 @@ public class ClientTest {
             Thread.sleep(7000);
             // Close the socket and streams
             socket.close();
-            System.out.println(socket.isClosed());
             input.close();
             output.close();
         } catch (IOException e) {

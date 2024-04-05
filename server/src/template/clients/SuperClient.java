@@ -1,8 +1,8 @@
 package template.clients;
 
 
-import template.access.ClientType;
-import template.access.Subordinate;
+import rules.ClientType;
+import rules.Subordinate;
 import template.base.Client;
 import java.net.Socket;
 

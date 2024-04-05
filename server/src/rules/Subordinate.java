@@ -1,4 +1,4 @@
-package template.access;
+package rules;
 
 public interface Subordinate {
     ClientType getClientType();

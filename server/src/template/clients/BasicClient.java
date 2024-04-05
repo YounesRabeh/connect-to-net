@@ -1,15 +1,15 @@
 package template.clients;
 
-import template.access.ClientType;
-import template.access.Subordinate;
+import rules.ClientType;
+import rules.Subordinate;
 import template.base.Client;
 import java.net.Socket;
 
-import static template.access.ClientType.BASIC;
+import static rules.ClientType.BASIC;
 
 public class BasicClient extends Client implements Subordinate {
     // TODO: add upgrading/downgrading the clients
-    private ClientType clientType;
+    private final ClientType clientType;
 
     public BasicClient(Socket clientSocket) {
         super(clientSocket);

@@ -32,7 +32,7 @@ public class Start {
                         while (true) {
                             Thread.sleep(HEARTBEAT_INTERVAL); // Wait for heartbeat interval
                             //FixME: socket close not detected
-                            clientConnected();
+                            checkConnectedClients();
                         }
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -47,14 +47,15 @@ public class Start {
     }
 
     // Method to remove client from the clientMap
-    private static void clientConnected() {
+    private static void checkConnectedClients() {
         Iterator<Map.Entry<Integer, BasicClient>> iterator = clientMap.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry<Integer, BasicClient> entry = iterator.next();
             Client client = entry.getValue();
-            if (!client.isConnected()) {
-                System.out.println("Client disconnected: " + client.getID());
+            if (!client.isHostUp()) {
+                System.out.println("Client " + client.getID() + " disconnected");
                 iterator.remove();
+                System.out.println("Current up-hosts: " + clientMap.size());
             }
         }
     }

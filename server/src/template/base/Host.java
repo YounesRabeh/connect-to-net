@@ -1,5 +1,6 @@
 package template.base;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
 
@@ -41,9 +42,19 @@ public abstract class Host extends TimedDevice implements Connectable {
     public long getBytesReceived() { return bytesReceived; }
 
     @Override
-    public boolean isConnected(){
-         return !SOCKET.isClosed();
+    public boolean isHostUp() {
+        if (SOCKET.isClosed()) {
+            return false;
+        }
+        try {
+            // Try to perform a small operation that won't affect the connection state
+            this.SOCKET.sendUrgentData(0);
+            return true; // If no exception is thrown, the connection is still alive
+        } catch (IOException hostDown) { //TODO: custom 'unreachable' host
+            return false; // Exception occurred, indicating a disconnection
+        }
     }
+
 
 
 

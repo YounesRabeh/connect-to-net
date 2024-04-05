@@ -27,7 +27,7 @@ public class ClientTest2 {
 //            String response = input.readLine();
 //            System.out.println("Server response: " + response);
 
-            Thread.sleep(100000);
+            Thread.sleep(10000);
             // Close the socket and streams
             socket.close();
             input.close();
