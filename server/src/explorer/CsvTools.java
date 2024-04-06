@@ -120,6 +120,7 @@ public final class CsvTools {
         }
         lines.remove(index);
         FileManager.overrideFile(filePath, String.join("\n", lines));
+        FileManager.addToFile(filePath, "\n");
     }
 
     public static void appendColumn(String filePath, String[] columnData) throws IOException {

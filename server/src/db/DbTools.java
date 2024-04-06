@@ -1,12 +1,15 @@
 package db;
 
 import db.records.ClientRecord;
+import rules.ClientType;
 import template.base.Client;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.NoSuchElementException;
 
+import static explorer.CsvTools.deleteRow;
+import static explorer.CsvTools.getRow;
 import static explorer.FileManager.getNumberOfLines;
 
 final class DbTools implements DbInfo {
@@ -38,6 +41,28 @@ final class DbTools implements DbInfo {
                 DB_FILE_SEPARATOR +
                 DB_FILE_CLIENTS_ENDING
         );
+    }
+
+
+    //TODO: create a row & column objects
+    static String[] removeTuple(ClientType clientType, int index) throws IOException {
+        String targetDb = getTargetDb(clientType);
+        String[] tuple = getRow(targetDb, index);
+        deleteRow(targetDb, index);
+        return tuple;
+    }
+
+
+
+    private static String getTargetDb(ClientType clientType){
+        int dbIndex = 0;
+        for (String db: CLIENTS_DATABASES){
+            if (db.contains(clientType.toString())){
+                return CLIENTS_DATABASES.get(dbIndex);
+            }
+            dbIndex++;
+        }
+        throw new NoSuchElementException("Target db doesn't exist in " + CLIENTS_DB_DIR);
     }
 
 

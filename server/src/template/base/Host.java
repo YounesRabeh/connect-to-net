@@ -22,7 +22,7 @@ public abstract class Host extends TimedDevice implements Connectable {
         InetAddress internet = SOCKET.getInetAddress();
         this.PORT_NUM = SOCKET.getPort();
         this.IP = internet.getHostAddress();
-        this.NAME = internet.getHostName();
+        this.NAME = internet.getCanonicalHostName();
     }
 
     //GETTERS:

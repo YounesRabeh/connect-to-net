@@ -2,36 +2,42 @@ package db;
 
 
 import db.records.ClientRecord;
+import rules.ClientType;
 import template.base.Client;
 
 import java.io.IOException;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
 import static db.DbTools.*;
 import static explorer.CsvTools.addToCsvFile;
+import static explorer.CsvTools.appendRow;
 
 public final class DBMS implements DbInfo {
     private DBMS(){}
 
     //TODO: set a readable id to clients [primary key]
 
-//    private static List<Integer> liveClient = new LinkedList<Integer>();
-//    public static int assignClientId(Client client){
-//        int id;
-//        try {
-//            if (liveClient.isEmpty()){
-//                id = getTupleNumber(client);
-//            } else {
-//                id = liveClient.removeFirst();
-//            }
-//        } catch (IOException e) {throw new RuntimeException(e);}
-//        return id;
-//    }
+    private volatile static List<Integer> releasedIDs = new LinkedList<Integer>();
+    private static int ID_bound = 0;
 
-//    public static void releaseClientID(int id){
-//        liveClient.add(id);
-//    }
+    public static int assignClientId(){
+        return releasedIDs.isEmpty() ? ID_bound++ : releasedIDs.removeFirst();
+    }
+
+    public static void removeClient(Client client){
+        try {
+            removeTuple(client.getClientType(), client.getID());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        releaseClientID(client);
+    }
+
+    private static void releaseClientID(Client client){
+        releasedIDs.add(client.getID());
+    }
 
     private static Clients CLIENTS;
 
@@ -46,8 +52,8 @@ public final class DBMS implements DbInfo {
     public static void add(ClientRecord record) {
         try {
             String[] tuple = record.toTuple();
-            addToCsvFile(ALL_CLIENTS, tuple);
-            addToCsvFile(getClientDbDestination(record), tuple);
+            appendRow(ALL_CLIENTS, tuple);
+            appendRow(getClientDbDestination(record), tuple);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

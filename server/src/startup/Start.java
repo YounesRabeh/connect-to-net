@@ -3,31 +3,26 @@ package startup;
 import db.DBMS;
 import template.base.Client;
 import template.clients.AdminClient;
-import template.clients.BasicClient;
 
 import java.io.IOException;
 import java.net.ServerSocket;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.Arrays;
 
 
 public class Start {
-    private static final int PORT = 3215;
-    private static final long HEARTBEAT_INTERVAL = 2000; // 2 seconds
-    private static Map<Integer, Client> clientMap = new HashMap<>();
-    private static int NUM = 0;
+    private static final int PORT = 8080;
+    private static final long HEARTBEAT_INTERVAL = 200; // 2 seconds
 
     Start(){
         try {
             ServerSocket serverSocket = new ServerSocket(PORT);
             System.out.println("Server Started [" + PORT + "]");
+            System.out.println("server sovket address: " + Arrays.toString(serverSocket.getInetAddress().getAddress()));
 
             DBMS.init();
             // Listen for connections and handle each client in a separate thread
             while (true) {
                 AdminClient client = new AdminClient(serverSocket.accept());
-                clientMap.put(NUM++, client);
 
                 Thread clientThread = new Thread(() -> {
                     System.out.print("New client connected: " + client.getName() + "\nID : " + client.getID());
@@ -53,17 +48,7 @@ public class Start {
 
     // Method to remove client from the clientMap
     private static void checkConnectedClients() {
-        Iterator<Map.Entry<Integer, Client>> iterator = clientMap.entrySet().iterator();
-        while (iterator.hasNext()) {
-            Map.Entry<Integer, Client> entry = iterator.next();
-            Client client = entry.getValue();
-            if (!client.isHostUp()) {
-                System.out.println("Client " + client.getID() + " disconnected");
-                //releaseClientID(client.getID());
-                iterator.remove();
-                System.out.println("Current up-hosts: " + clientMap.size());
-            }
-        }
+
     }
 
 

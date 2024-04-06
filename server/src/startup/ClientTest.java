@@ -10,7 +10,7 @@ public class ClientTest {
     public static void main(String[] args) {
         try {
             // Connect to the server running on localhost at port 3214
-            Socket socket = new Socket("localhost", 3215);
+            Socket socket = new Socket("localhost", 8080);
             System.out.println("Connected to server.");
 
             // Create input and output streams for communication
@@ -27,7 +27,7 @@ public class ClientTest {
 //            String response = input.readLine();
 //            System.out.println("Server response: " + response);
 
-            Thread.sleep(7000);
+            Thread.sleep(20000);
             // Close the socket and streams
             socket.close();
             input.close();

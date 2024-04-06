@@ -19,12 +19,10 @@ public abstract class Client extends Host {
     // Upon Connected
     private final Integer ID;
 
-
-
     public Client(Socket clientSocket, ClientType clientType) {
         super(clientSocket);
         this.clientType = clientType;
-        this.ID = this.hashCode();
+        this.ID = DBMS.assignClientId();
         DBMS.add(new ClientRecord(this));
     }
 
