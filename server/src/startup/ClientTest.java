@@ -10,7 +10,7 @@ public class ClientTest {
     public static void main(String[] args) {
         try {
             // Connect to the server running on localhost at port 3214
-            Socket socket = new Socket("localhost", 3214);
+            Socket socket = new Socket("localhost", 3215);
             System.out.println("Connected to server.");
 
             // Create input and output streams for communication

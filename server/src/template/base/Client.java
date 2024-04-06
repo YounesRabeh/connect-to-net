@@ -25,7 +25,7 @@ public abstract class Client extends Host {
         super(clientSocket);
         this.clientType = clientType;
         this.ID = this.hashCode();
-        DBMS.add(new ClientRecord(this))
+        DBMS.add(new ClientRecord(this));
     }
 
     public String getUsername() {

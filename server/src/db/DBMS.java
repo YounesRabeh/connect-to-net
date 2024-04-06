@@ -14,6 +14,8 @@ import static explorer.CsvTools.addToCsvFile;
 public final class DBMS implements DbInfo {
     private DBMS(){}
 
+    //TODO: set a readable id to clients [primary key]
+
 //    private static List<Integer> liveClient = new LinkedList<Integer>();
 //    public static int assignClientId(Client client){
 //        int id;
@@ -36,8 +38,10 @@ public final class DBMS implements DbInfo {
     public static void init(){
         //TODO: create for the rest
         CLIENTS = Clients.get();
-
     }
+
+    //Todo: get the data base Clienttypoe -> database
+
 
     public static void add(ClientRecord record) {
         try {

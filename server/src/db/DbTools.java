@@ -28,6 +28,9 @@ final class DbTools implements DbInfo {
         throw new NoSuchElementException("No database for " + record.getClass().getSimpleName() + " in " + CLIENTS_DB_DIR);
     }
 
+
+    //TODO: Client -> type , Client -> Db dirs
+
     static int getTupleNumber(Client client) throws IOException {
         String clientType = client.getClientType().toString().toUpperCase();
         return getNumberOfLines(CLIENTS_DB_DIR +
