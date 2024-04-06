@@ -18,7 +18,7 @@ public class BasicClient extends Client implements Subordinate {
         this.clientType = BASIC;
 
         //TODO: see if the return type is indeed the super class not just 'Client'
-        new ClientRecord(ID, this);
+        new ClientRecord(this);
         // Assuming ClientRecord handles client record creation
     }
 

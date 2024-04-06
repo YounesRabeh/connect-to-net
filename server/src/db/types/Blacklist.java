@@ -1,4 +1,4 @@
 package db.types;
 
-public final class Blacklist {
+final class Blacklist {
 }

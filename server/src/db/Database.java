@@ -1,11 +1,10 @@
 package db;
 
 
-import db.types.Clients;
 
 import java.io.IOException;
+import java.util.Arrays;
 
-import static explorer.CsvTools.addToCsvFile;
 import static explorer.FileManager.createEmptyFileIfNotExists;
 import static explorer.PathResolver.createDirectory;
 
@@ -23,11 +22,11 @@ public abstract class Database<R extends Record> implements DbInfo {
         dbInit();
     }
 
+
     public abstract void addRecord(R record);
     public abstract void removeRecord(R record);
 
     public void createDatabase() {
-
         createTables();
     }
 
@@ -44,18 +43,16 @@ public abstract class Database<R extends Record> implements DbInfo {
     }
 
     private void dirInit(){
-        createDirectory(DB_DIR);
-        createDirectory(CLIENTS_DB_DIR);
-        createDirectory(ROUTING_DB_DIR);
-        createDirectory(BLACKLIST_DB_DIR);
+        for (String s : DATABASES_DIR) {
+            createDirectory(s);
+        }
     }
 
     private void filesInit() {
         try {
-            createEmptyFileIfNotExists(ALL_CLIENTS);
-            createEmptyFileIfNotExists(BASIC_CLIENTS);
-            createEmptyFileIfNotExists(SUPER_CLIENTS);
-            createEmptyFileIfNotExists(ADMIN_CLIENTS);
+            for (String s : CLIENTS_DATABASES) {
+                createEmptyFileIfNotExists(s);
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -1,11 +1,13 @@
 package template.base;
 
+import rules.ClientType;
+
 import java.net.Socket;
 
 
 public abstract class Client extends Host {
     // Upon Connected
-    public final Integer ID;
+    private final Integer ID;
 
     // Dynamic
     private String username; //TODO: pretty useless
