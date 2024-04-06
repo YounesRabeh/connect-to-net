@@ -3,6 +3,7 @@ package template.base;
 import java.io.IOException;
 import java.net.InetAddress;
 import java.net.Socket;
+import java.util.Objects;
 
 public abstract class Host extends TimedDevice implements Connectable {
     // Upon Connected
@@ -15,7 +16,6 @@ public abstract class Host extends TimedDevice implements Connectable {
 
     private Socket SOCKET;
 
-
     Host(Socket socket) {
         super();
         this.SOCKET = socket;
@@ -23,8 +23,6 @@ public abstract class Host extends TimedDevice implements Connectable {
         this.PORT_NUM = SOCKET.getPort();
         this.IP = internet.getHostAddress();
         this.NAME = internet.getHostName();
-
-
     }
 
     //GETTERS:
@@ -67,5 +65,15 @@ public abstract class Host extends TimedDevice implements Connectable {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Host host)) return false;
+        return Objects.equals(IP, host.IP) && Objects.equals(NAME, host.NAME) && Objects.equals(PORT_NUM, host.PORT_NUM) && Objects.equals(SOCKET, host.SOCKET);
+    }
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(IP, NAME, PORT_NUM, SOCKET);
+    }
 }

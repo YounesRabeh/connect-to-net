@@ -140,4 +140,15 @@ public final class FileManager {
         }
         return fileName.substring(lastIndex + 1);
     }
+
+    public static int getNumberOfLines(String filePath) throws IOException {
+        int count = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            while (reader.readLine() != null) {
+                count++;
+            }
+        }
+        return count;
+    }
+
 }

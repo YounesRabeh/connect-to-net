@@ -1,19 +1,16 @@
 package template.clients;
 
 
-import rules.ClientType;
 import rules.Subordinate;
 import template.base.Client;
 
 import java.net.Socket;
 
+import static rules.ClientType.SUPER;
+
 public class SuperClient extends Client implements Subordinate {
     public SuperClient(Socket clientSocket) {
-        super(clientSocket, ClientType.SUPER);
+        super(clientSocket, SUPER);
     }
 
-    @Override
-    public ClientType getClientType() {
-        return null;
-    }
 }

@@ -2,6 +2,7 @@ package startup;
 
 import db.DBMS;
 import template.base.Client;
+import template.clients.AdminClient;
 import template.clients.BasicClient;
 
 import java.io.IOException;
@@ -10,10 +11,12 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+
 public class Start {
-    private static final int PORT = 3214;
+    private static final int PORT = 3215;
     private static final long HEARTBEAT_INTERVAL = 2000; // 2 seconds
-    private static Map<Integer, BasicClient> clientMap = new HashMap<>();
+    private static Map<Integer, Client> clientMap = new HashMap<>();
+    private static int NUM = 0;
 
     Start(){
         try {
@@ -23,8 +26,8 @@ public class Start {
             DBMS.init();
             // Listen for connections and handle each client in a separate thread
             while (true) {
-                BasicClient client = new BasicClient(serverSocket.accept());
-                clientMap.put(client.getID(), client);
+                AdminClient client = new AdminClient(serverSocket.accept());
+                clientMap.put(NUM++, client);
 
                 Thread clientThread = new Thread(() -> {
                     System.out.print("New client connected: " + client.getName() + "\nID : " + client.getID());
@@ -50,12 +53,13 @@ public class Start {
 
     // Method to remove client from the clientMap
     private static void checkConnectedClients() {
-        Iterator<Map.Entry<Integer, BasicClient>> iterator = clientMap.entrySet().iterator();
+        Iterator<Map.Entry<Integer, Client>> iterator = clientMap.entrySet().iterator();
         while (iterator.hasNext()) {
-            Map.Entry<Integer, BasicClient> entry = iterator.next();
+            Map.Entry<Integer, Client> entry = iterator.next();
             Client client = entry.getValue();
             if (!client.isHostUp()) {
                 System.out.println("Client " + client.getID() + " disconnected");
+                //releaseClientID(client.getID());
                 iterator.remove();
                 System.out.println("Current up-hosts: " + clientMap.size());
             }

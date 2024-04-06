@@ -2,8 +2,6 @@ package db;
 
 import db.records.ClientRecord;
 
-import java.io.IOException;
-
 
 final class Clients extends Database<ClientRecord> {
 

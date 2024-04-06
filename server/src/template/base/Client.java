@@ -1,6 +1,8 @@
 package template.base;
 
 
+import db.DBMS;
+import db.records.ClientRecord;
 import rules.ClientType;
 
 import java.net.Socket;
@@ -8,19 +10,22 @@ import java.net.Socket;
 
 
 public abstract class Client extends Host {
-    // Upon Connected
-    private final Integer ID;
-    // TODO: add upgrading/downgrading the clients
-    private ClientType clientType;
 
     // Dynamic
     private String username; //TODO: pretty useless
+    // TODO: add upgrading/downgrading the clients
+    private ClientType clientType;
+
+    // Upon Connected
+    private final Integer ID;
+
+
 
     public Client(Socket clientSocket, ClientType clientType) {
         super(clientSocket);
-        this.ID = 0;
         this.clientType = clientType;
-
+        this.ID = this.hashCode();
+        DBMS.add(new ClientRecord(this))
     }
 
     public String getUsername() {
@@ -30,6 +35,7 @@ public abstract class Client extends Host {
     public Integer getID() {
         return ID;
     }
+
     public ClientType getClientType() {
         return clientType;
     }

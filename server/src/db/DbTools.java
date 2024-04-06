@@ -1,8 +1,13 @@
 package db;
 
 import db.records.ClientRecord;
+import template.base.Client;
 
+import java.io.IOException;
+import java.util.HashMap;
 import java.util.NoSuchElementException;
+
+import static explorer.FileManager.getNumberOfLines;
 
 final class DbTools implements DbInfo {
     private DbTools(){}
@@ -21,6 +26,15 @@ final class DbTools implements DbInfo {
             destinationIndex += 1;
         }
         throw new NoSuchElementException("No database for " + record.getClass().getSimpleName() + " in " + CLIENTS_DB_DIR);
+    }
+
+    static int getTupleNumber(Client client) throws IOException {
+        String clientType = client.getClientType().toString().toUpperCase();
+        return getNumberOfLines(CLIENTS_DB_DIR +
+                "/" + clientType +
+                DB_FILE_SEPARATOR +
+                DB_FILE_CLIENTS_ENDING
+        );
     }
 
 

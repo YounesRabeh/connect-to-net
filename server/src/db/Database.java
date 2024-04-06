@@ -43,12 +43,12 @@ abstract class Database<R extends Record> implements DbInfo {
 
     private void dirInit(){
         createDirectory(DB_DIR);
-        for (String s : DATABASES_DIR) {createDirectory(s);}
+        for (final String DIR: DATABASES_DIR) {createDirectory(DIR);}
     }
 
     private void filesInit() {
         try {
-            for (String s : CLIENTS_DATABASES) {createEmptyFileIfNotExists(s);}
+            for (final String DB : CLIENTS_DATABASES) {createEmptyFileIfNotExists(DB);}
         } catch (IOException e) {throw new RuntimeException(e);}
     }
 
