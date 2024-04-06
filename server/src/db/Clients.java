@@ -1,8 +1,6 @@
-package db.types;
+package db;
 
-import db.DBMS;
-import db.Database;
-import db.types.records.ClientRecord;
+import db.records.ClientRecord;
 
 import java.io.IOException;
 
@@ -23,16 +21,12 @@ final class Clients extends Database<ClientRecord> {
     }
 
     @Override
-    public void addRecord(ClientRecord record) {
-        try {
-            DBMS.add(record);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    protected void addRecord(ClientRecord record) {
+        DBMS.add(record);
     }
 
     @Override
-    public void removeRecord(ClientRecord record) {
+    protected void removeRecord(ClientRecord record) {
 
     }
 

@@ -8,7 +8,7 @@ import java.net.Socket;
 
 public class AdminClient extends Client implements Subordinate {
     public AdminClient(Socket clientSocket) {
-        super(clientSocket);
+        super(clientSocket, ClientType.ADMIN);
     }
 
     @Override

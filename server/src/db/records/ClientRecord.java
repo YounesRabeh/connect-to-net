@@ -1,4 +1,4 @@
-package db.types.records;
+package db.records;
 
 
 import template.base.Client;

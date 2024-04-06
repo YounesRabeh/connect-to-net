@@ -4,7 +4,7 @@ import explorer.PathResolver;
 
 import java.util.List;
 
-public interface DbInfo {
+interface DbInfo {
     String DB_DIR           = PathResolver.getJarDirectory() + "/DB";
     String CLIENTS_DB_DIR   = DB_DIR + "/Clients";
     String ROUTING_DB_DIR   = DB_DIR + "/Routing";

@@ -1,4 +1,4 @@
-package db.types;
+package db;
 
 final class Routing {
 }

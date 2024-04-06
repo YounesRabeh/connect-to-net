@@ -1,18 +1,33 @@
 package db;
 
 
-import db.types.records.ClientRecord;
-import db.types.records.RouteRecord;
+import db.records.ClientRecord;
 
 import java.io.IOException;
 
 import static db.DbTools.*;
 import static explorer.CsvTools.addToCsvFile;
 
-public class DBMS implements DbInfo {
+public final class DBMS implements DbInfo {
+    private DBMS(){}
 
-    public static void add(ClientRecord record) throws IOException {
-        addToCsvFile(getClientDbDestination(record), record.toTuple());
+    private static Clients CLIENTS;
+
+    public static void init(){
+        //TODO: create for the rest
+        CLIENTS = Clients.get();
+
+    }
+
+
+    public static void add(ClientRecord record) {
+        try {
+            String[] tuple = record.toTuple();
+            addToCsvFile(ALL_CLIENTS, tuple);
+            addToCsvFile(getClientDbDestination(record), tuple);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 

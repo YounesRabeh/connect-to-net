@@ -1,21 +1,26 @@
 package db;
 
-import db.types.records.ClientRecord;
+import db.records.ClientRecord;
 
 import java.util.NoSuchElementException;
 
-public final class DbTools implements DbInfo {
+final class DbTools implements DbInfo {
     private DbTools(){}
 
     static String getClientDbDestination(ClientRecord record){
+        int destinationIndex = 0;
+        //FIXME: make it more efficient
         for (String destination: CLIENTS_DATABASES){
-            String recordName =  record.client().getClass().getName();
             int startIndex = destination.indexOf(CLIENTS_DB_DIR + "/") + CLIENTS_DB_DIR.length();
-            if (destination.substring(startIndex, recordName.indexOf(DB_FILE_SEPARATOR)).equalsIgnoreCase(recordName)){
-                return CLIENTS_DATABASES.get(CLIENT_TYPES.indexOf(destination));
+            String dbLocalDestination = destination.substring(startIndex);
+            String dbLocalDestinationType = dbLocalDestination.substring(1, dbLocalDestination.indexOf(DB_FILE_SEPARATOR));
+            String clientType = record.client().getClientType().toString();
+            if (dbLocalDestinationType.contains(clientType)){
+                return CLIENTS_DATABASES.get(CLIENT_TYPES.indexOf(destinationIndex));
             }
+            destinationIndex += 1;
         }
-        throw new NoSuchElementException("No database for " + record.getClass().getName() + " in " + CLIENTS_DB_DIR);
+        throw new NoSuchElementException("No database for " + record.getClass().getSimpleName() + " in " + CLIENTS_DB_DIR);
     }
 
 

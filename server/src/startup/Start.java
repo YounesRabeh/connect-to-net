@@ -1,6 +1,6 @@
 package startup;
 
-import db.types.LocalDB;
+import db.DBMS;
 import template.base.Client;
 import template.clients.BasicClient;
 
@@ -20,7 +20,7 @@ public class Start {
             ServerSocket serverSocket = new ServerSocket(PORT);
             System.out.println("Server Started [" + PORT + "]");
 
-            LocalDB.init();
+            DBMS.init();
             // Listen for connections and handle each client in a separate thread
             while (true) {
                 BasicClient client = new BasicClient(serverSocket.accept());
