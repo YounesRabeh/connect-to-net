@@ -16,7 +16,7 @@ final class DbTools implements DbInfo {
             String dbLocalDestinationType = dbLocalDestination.substring(1, dbLocalDestination.indexOf(DB_FILE_SEPARATOR));
             String clientType = record.client().getClientType().toString();
             if (dbLocalDestinationType.contains(clientType)){
-                return CLIENTS_DATABASES.get(CLIENT_TYPES.indexOf(destinationIndex));
+                return CLIENTS_DATABASES.get(destinationIndex);
             }
             destinationIndex += 1;
         }

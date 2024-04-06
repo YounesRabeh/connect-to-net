@@ -42,6 +42,7 @@ abstract class Database<R extends Record> implements DbInfo {
     }
 
     private void dirInit(){
+        createDirectory(DB_DIR);
         for (String s : DATABASES_DIR) {createDirectory(s);}
     }
 
