@@ -15,6 +15,8 @@ import static explorer.FileManager.getNumberOfLines;
 final class DbTools implements DbInfo {
     private DbTools(){}
 
+    //TODO: add all the tools that DBMS needs [Object conversion]
+
     static String getClientDbDestination(ClientRecord record){
         int destinationIndex = 0;
         //FIXME: make it more efficient

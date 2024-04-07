@@ -18,6 +18,7 @@ public final class DBMS implements DbInfo {
     private DBMS(){}
 
     //TODO: set a readable id to clients [primary key]
+    //Todo: add bdTools abstraction layer, this class shouldn't now how to manipulate file
 
     private volatile static List<Integer> releasedIDs = new LinkedList<Integer>();
     private static int ID_bound = 0;
@@ -35,6 +36,7 @@ public final class DBMS implements DbInfo {
         releaseClientID(client);
     }
 
+    //Fixme: release interval Tread ---
     private static void releaseClientID(Client client){
         releasedIDs.add(client.getID());
     }

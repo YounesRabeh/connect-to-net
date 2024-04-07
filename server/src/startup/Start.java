@@ -22,6 +22,8 @@ public class Start {
             System.out.println("server sovket address: " + Arrays.toString(serverSocket.getInetAddress().getAddress()));
 
             DBMS.init();
+            //FIXME: this a server not a client (they're all sockets ,server or client is just a perspective) more like
+            // my -server- socket is connected to [client or server]
             SuperClient superClient = new SuperClient(new Socket("www.google.com", 80));
             // Listen for connections and handle each client in a separate thread
             while (true) {
