@@ -3,9 +3,11 @@ package startup;
 import db.DBMS;
 import template.base.Client;
 import template.clients.AdminClient;
+import template.clients.SuperClient;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Arrays;
 
 
@@ -20,9 +22,11 @@ public class Start {
             System.out.println("server sovket address: " + Arrays.toString(serverSocket.getInetAddress().getAddress()));
 
             DBMS.init();
+            SuperClient superClient = new SuperClient(new Socket("www.google.com", 80));
             // Listen for connections and handle each client in a separate thread
             while (true) {
                 AdminClient client = new AdminClient(serverSocket.accept());
+
 
                 Thread clientThread = new Thread(() -> {
                     System.out.print("New client connected: " + client.getName() + "\nID : " + client.getID());

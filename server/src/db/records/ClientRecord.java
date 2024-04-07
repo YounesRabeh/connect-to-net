@@ -10,9 +10,10 @@ public record ClientRecord(Client client) {
         return new String[]{
                 String.valueOf(client.getID()),
                 client.getName(),
+                client.getUsername(),
+                String.valueOf(client.getClientType()),
                 client.getIP(),
                 String.valueOf(client.getPortNumber()),
-                client.getUsername(),
                 client.getFormattedConnectionTime()
         };
     }
